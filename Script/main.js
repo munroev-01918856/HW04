@@ -89,11 +89,15 @@ function validate(button, buttonName, num) {
 
 // Input Listeners
 
-minXInput.addEventListener('change', e => {
-    e.preventDefault();
-    tableRange[0] = Number(minXInput.value);
-    validate(minXInput,"Minimum row number ", tableRange[0]);
-});
+// minXInput.addEventListener('change', e => {
+//     e.preventDefault();
+//     tableRange[0] = Number(minXInput.value);
+//     validate(minXInput,"Minimum row number ", tableRange[0]);
+// });
+
+$("#minX").change(function(){
+    alert("The text has been changed.");
+  });
 minYInput.addEventListener('change', e => {
     e.preventDefault();
     tableRange[1] = Number(minYInput.value);
