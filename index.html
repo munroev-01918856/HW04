@@ -1,0 +1,71 @@
+ <!-- File: index.html
+GUI Assignment: HW 3-Create multiplication table
+Victoria Munroe victoria_munroe@student.uml.edu
+Description: Website to take input & return multiplication table
+This page holds the html scaffoliding
+
+Copyright (c) 2023 by VMunroe. All rights reserved. May be freely copied or excerpted for educational purposes with credit to the author.
+created by VM 06/02/23
+
+Sources: 
+w3Schools w3schools.com
+TutorialsPoint 
+Traversy https://www.youtube.com/watch?v=hdI2bqOjy3c&t=4419s
+ 
+-->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Multiplication table </title>
+    <meta charset="utf-8">
+    <link href="Style/style.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--[if lt IE 9]>
+   <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"> </script>   <![endif]-->
+</head>
+<body>
+    <div id="wrapper">
+        <header>
+            <h1>Multiplication Table</Table></h1>
+        </header>
+       <!-- Source https://www.youtube.com/watch?v=hdI2bqOjy3c&t=3568s
+            Visual Inspiration:
+        https://www.jesseheines.com/~heines/91.461/91.461-2012-13f/461-lecs/code/jmh-table-v1.html?xBegin=5&xEnd=10&yBegin=1&yEnd=5 
+             -->
+        <div class="container">
+            <div class="AAAAH">
+                <h3>Add Number Range</h3>
+                <form id="numberInput">
+                    <div>
+                        <label for="minX">Minimum Row Number:</label>
+                        <input type="text" id="minX" class="numInputBox">
+                    </div>
+                    <div>
+                        <label for="maxX">Maximum Row Number:</label>
+                        <input type="text" id="maxX" class="numInputBox">
+                    </div>
+                    <div>
+                        <label for="minY">Minimum Column Number:</label>
+                        <input type="text" id="minY" class="numInputBox">
+                    </div>
+                    <div>
+                        <label for="maxY">Maximum Column Number:</label>
+                        <input type="text" id="maxY" class="numInputBox"> 
+                    </div>
+                    <input class="btn" type="submit" value="Calculate">
+                </form>
+            </div>
+            <div class="msg"></div>
+            <div id="tblcont">
+                <table id ="mlttable">
+                </table>
+            </div>
+        </div>
+
+    </div>
+    <script src="Script/main.js"></script>
+</body>
+
+</html>
