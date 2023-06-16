@@ -96,7 +96,9 @@ function validate(button, buttonName, num) {
 // });
 
 $("#minX").change(function(){
-    alert("The text has been changed.");
+    e.preventDefault();
+    tableRange[0] = Number(minXInput.value);
+    validate(minXInput,"Minimum row number ", tableRange[0]);
   });
 minYInput.addEventListener('change', e => {
     e.preventDefault();
