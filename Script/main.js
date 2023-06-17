@@ -25,20 +25,20 @@ low:
 fix validation
 */
 
-var minXInput= document.querySelector("#minX");
-var minYInput =document.querySelector("#minY");
-var maxXInput =document.querySelector("#maxX");
-var maxYInput = maxY = document.querySelector("#maxY");
+// var minXInput= document.querySelector("#minX");
+// var minYInput =document.querySelector("#minY");
+// var maxXInput =document.querySelector("#maxX");
+// var maxYInput = maxY = document.querySelector("#maxY");
 const table = document.getElementById("mlttable");
 var error=false;
 var errmsg="";
 const msg = document.querySelector('.msg');
-const btn = document.querySelector('.btn')
+const submitButton = document.querySelector('.btn')
 var x = false;
 const tableRange= [null, null, null,null];  //min x, min y, max x, max y
 
 // Disable calculate until no errors
-btn.disabled = true;
+submitButton.disabled = true;
 
 
 function validate(button, buttonName, num) {
@@ -70,15 +70,15 @@ function validate(button, buttonName, num) {
         minYInput.disabled = false;
         maxXInput.disabled = false
         maxYInput.disabled = false;
-        if (!error && tableRange[0] != null && tableRange[1] != null && tableRange[2] != null && tableRange[3] != null) { btn.disabled = false; }
-        else { btn.disabled = true; }   
+        if (!error && tableRange[0] != null && tableRange[1] != null && tableRange[2] != null && tableRange[3] != null) { submitButton.disabled = false; }
+        else { submitButton.disabled = true; }   
     }
     else {
         minXInput.disabled = true;
         minYInput.disabled = true;
         maxXInput.disabled=true
         maxYInput.disabled = true;
-        btn.disabled = true;
+        submitButton.disabled = true;
         button.disabled = false;
     }
     
@@ -89,35 +89,25 @@ function validate(button, buttonName, num) {
 
 // Input Listeners
 
-// minXInput.addEventListener('change', e => {
-//     e.preventDefault();
-//     tableRange[0] = Number(minXInput.value);
-//     validate(minXInput,"Minimum row number ", tableRange[0]);
-// });
-
 $("#minX").change(function(){
-    e.preventDefault();
     tableRange[0] = Number(minXInput.value);
     validate(minXInput,"Minimum row number ", tableRange[0]);
   });
-minYInput.addEventListener('change', e => {
-    e.preventDefault();
+  $("#minY").change(function(){
     tableRange[1] = Number(minYInput.value);
     validate(minYInput,"Minimum column number ",tableRange[1]);
 });
-maxXInput.addEventListener('change', e => {
-    e.preventDefault();
+$("#maxX").change(function(){
     tableRange[2] = Number(maxXInput.value);
     validate(maxXInput,"Maximum row number",tableRange[2]);
 });
-maxYInput.addEventListener('change', e => {
-    e.preventDefault();
+$("#maxY").change(function(){
     tableRange[3] = Number(maxYInput.value);
     validate(maxYInput,"Maximum column number",tableRange[3]);
     
 });
   
-btn.addEventListener('click', e => {
+submitButton.addEventListener('click', e => {
     e.preventDefault();
     makeTable();
    
