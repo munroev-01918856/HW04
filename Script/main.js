@@ -2,10 +2,10 @@
 GUI Assignment: HW 3-Create multiplication table
 Victoria Munroe victoria_munroe@student.uml.edu
 Description: Website to take input & return multiplication table
-This page holds the jquery code
+This page holds the jquery & JS code
 
 Copyright (c) 2023 by VMunroe. All rights reserved. May be freely copied or excerpted for educational purposes with credit to the author.
-created by VM 06/02/23
+created by VM 06/15/23
 
 Sources: 
 w3Schools w3schools.com
@@ -19,20 +19,13 @@ https://stackoverflow.com/questions/27392899/rows-disappearing-when-adding-them-
 */
  
 
-
-
-// var minYInput =document.querySelector("#minY");
-// var maxXInput =document.querySelector("#maxX");
-// var maxYInput = maxY = document.querySelector("#maxY");
 const table = document.getElementById("mlttable");
 $error=false;
+$ready=false;
 var errmsg="";
-// const btn = document.querySelector('.btn')
-// var x = false;
 const tableRange= [null, null, null,null];  //min x, min y, max x, max y
 
 // Disable calculate until no errors
-$('.btn').prop('disabled', true);
 
 
 function validate($button) {
@@ -62,50 +55,46 @@ function validate($button) {
         $('#minY').prop('disabled', false);
         $('#maxX').prop('disabled', false);
         $('#maxY').prop('disabled', false);
-        if (!$error && tableRange[0] != null && tableRange[1] != null && tableRange[2] != null && tableRange[3] != null) { $('.btn').prop('disabled', false); }
-        else { $('.btn').prop('disabled', true);}   9
+        if (!$error && tableRange[0] != null && tableRange[1] != null && tableRange[2] != null && tableRange[3] != null) { $ready=true; }
     }
     else {
         $('#minX').prop('disabled', true);
         $('#minY').prop('disabled', true);
         $('#maxX').prop('disabled', true);
         $('#maxY').prop('disabled', true);
-        $('.btn').prop('disabled', true);
         $button.prop('disabled', false);
     }
     
     // msg.classList.add('error');
    $("#errMsg").text(errmsg);
-    return $error;
+    return $ready;
 }
 
 // Input Listeners
 
-$("#minX").change(function(){
-    // console.log("JQ value"+ $("#minX" )
+$("#minX").change(function(e){
+    e.preventDefault();
     tableRange[0] = Number($("#minX").val());
-    validate($("#minX"));
+    if(validate($("#minX")))
+        makeTable();
   });
-  $("#minY").change(function(){
+$("#minY").change(function(e){
+    e.preventDefault();
     tableRange[1] = Number($("#minY").val());
-    validate($("#minY"));
+    if (validate($("#minY"))) makeTable();
 });
-$("#maxX").change(function(){
+$("#maxX").change(function(e){
+    e.preventDefault();
     tableRange[2] = Number($("#maxX").val());
-    validate($("#maxX"));
+    if(validate($("#maxX")))makeTable();
 });
-$("#maxY").change(function(){
+$("#maxY").change(function(e){
+    e.preventDefault();
     tableRange[3] = Number($("#maxY").val());
-    validate($("#maxY"));
+    if (validate($("#maxY")))makeTable();
     
 });
   
-$('.btn').click(function(e){
-    e.preventDefault();
-    makeTable();
-
-   
-});
 
 //create dynamic table
 function makeTable() {
