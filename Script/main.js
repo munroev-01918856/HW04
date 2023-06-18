@@ -28,7 +28,6 @@ low:
 fix validation
 */
 
-var minXInput= document.querySelector("#minX");
 var minYInput =document.querySelector("#minY");
 var maxXInput =document.querySelector("#maxX");
 var maxYInput = maxY = document.querySelector("#maxY");
@@ -51,7 +50,7 @@ function validate($button, $num) {
         console.log("true")
         errmsg ="Please check input " +$button.attr("name") + " number must be a whole number";
     }
-    else if (($button.val() < -50) || ($button.val() > 50)) {
+    else if (($button.val() < -50) || ($num > 50)) {
         error = true;
         errmsg = $button.attr("name") + " must be between -50 and 50";
     }
@@ -68,15 +67,15 @@ function validate($button, $num) {
         errmsg ="Minimum column number must be smaller than maximum row number"
     }
     if (!error) {
-        minXInput.disabled = false;
-        minYInput.disabled = false;
-        maxXInput.disabled = false
-        maxYInput.disabled = false;
+        $('#minX').prop('disabled', false);
+        $('#minY').prop('disabled', false);
+        $('#maxX').prop('disabled', false);
+        $('#maxY').prop('disabled', false);
         if (!error && tableRange[0] != null && tableRange[1] != null && tableRange[2] != null && tableRange[3] != null) { $('.btn').prop('disabled', false); }
-        else { $('.btn').prop('disabled', true);}   
+        else { $('.btn').prop('disabled', true);}   9
     }
     else {
-        minXInput.disabled = true;
+        $('#minX').prop('disabled', true);
         minYInput.disabled = true;
         maxXInput.disabled=true
         maxYInput.disabled = true;
