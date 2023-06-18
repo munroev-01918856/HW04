@@ -15,11 +15,18 @@ Traversy https://www.youtube.com/watch?v=hdI2bqOjy3c&t=4419s
 -->
 
 
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <title>Multiplication table </title>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+
+
     <meta charset="utf-8">
     <link href="Style/style.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -41,19 +48,19 @@ Traversy https://www.youtube.com/watch?v=hdI2bqOjy3c&t=4419s
                 <form id="numberInput">
                     <div>
                         <label for="minX">Minimum Row Number:</label>
-                        <input type="text" id="minX" class="numInputBox" name="Minimum row number">
+                        <input type="text" id="minX" class="numInputBox" name="minX">
                     </div>
                     <div>
                         <label for="maxX">Maximum Row Number:</label>
-                        <input type="text" id="maxX" class="numInputBox">
+                        <input type="text" id="maxX" class="numInputBox"  name="maxX">
                     </div>
                     <div>
                         <label for="minY">Minimum Column Number:</label>
-                        <input type="text" id="minY" class="numInputBox">
+                        <input type="text" id="minY" class="numInputBox "  name="minY">
                     </div>
                     <div>
                         <label for="maxY">Maximum Column Number:</label>
-                        <input type="text" id="maxY" class="numInputBox"> 
+                        <input type="text" id="maxY" class="numInputBox"  name="maxY"> 
                     </div>
                 </form>
             </div>
