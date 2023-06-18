@@ -1,20 +1,22 @@
-// File: main.js
-// GUI Assignment: HW 3-Create multiplication table
-// Victoria Munroe victoria_munroe@student.uml.edu
-// Description: Website to take input & return multiplication table
-// This page holds the jquery code
+/*File: main.js
+GUI Assignment: HW 3-Create multiplication table
+Victoria Munroe victoria_munroe@student.uml.edu
+Description: Website to take input & return multiplication table
+This page holds the jquery code
 
-// Copyright (c) 2023 by VMunroe. All rights reserved. May be freely copied or excerpted for educational purposes with credit to the author.
-// created by VM 06/02/23
+Copyright (c) 2023 by VMunroe. All rights reserved. May be freely copied or excerpted for educational purposes with credit to the author.
+created by VM 06/02/23
 
-// Sources: 
-// w3Schools w3schools.com
-//tutorialrepublic.com/faq/how-to-get-the-value-in-an-input-text-box-using-jquery.php#:~:text=Answer%3A%20Use%20the%20jQuery%20val,in%20an%20alert%20dialog%20box.
-// TutorialsPoint 
-//https://jquery.com/
-//https://www.geeksforgeeks.org/how-to-get-the-objects-name-using-jquery/
-// Traversy https://www.youtube.com/watch?v=hdI2bqOjy3c&t=4419s
-//https://stackoverflow.com/questions/19625646/javascript-adding-an-id-attribute-to-another-created-element
+Sources: 
+w3Schools w3schools.com
+tutorialrepublic.com/faq/how-to-get-the-value-in-an-input-text-box-using-jquery.php#:~:text=Answer%3A%20Use%20the%20jQuery%20val,in%20an%20alert%20dialog%20box.
+TutorialsPoint 
+https://jquery.com/
+https://www.geeksforgeeks.org/how-to-get-the-objects-name-using-jquery/
+Traversy https://www.youtube.com/watch?v=hdI2bqOjy3c&t=4419s
+https://stackoverflow.com/questions/19625646/javascript-adding-an-id-attribute-to-another-created-element
+https://stackoverflow.com/questions/27392899/rows-disappearing-when-adding-them-dynamically-to-table-with-js-jquery
+*/
  
 
 
@@ -26,7 +28,7 @@ const table = document.getElementById("mlttable");
 $error=false;
 var errmsg="";
 // const btn = document.querySelector('.btn')
-var x = false;
+// var x = false;
 const tableRange= [null, null, null,null];  //min x, min y, max x, max y
 
 // Disable calculate until no errors
@@ -98,8 +100,8 @@ $("#maxY").change(function(){
     
 });
   
-$('.btn').click(function(){
-    // e.preventDefault();
+$('.btn').click(function(e){
+    e.preventDefault();
     makeTable();
 
    
@@ -108,7 +110,6 @@ $('.btn').click(function(){
 //create dynamic table
 function makeTable() {
     table.innerHTML = ""; //clear old table
-    x = true;
     console.log("Calculating Table");
     console.log("Min X: " + tableRange[0] + "Min Y: " + tableRange[1] + "Max X: " + tableRange[2] + "Max Y: " + tableRange[3]);
     var y = tableRange[1];
