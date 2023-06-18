@@ -2,7 +2,7 @@
 // GUI Assignment: HW 3-Create multiplication table
 // Victoria Munroe victoria_munroe@student.uml.edu
 // Description: Website to take input & return multiplication table
-// This page holds the html scaffoliding
+// This page holds the jquery code
 
 // Copyright (c) 2023 by VMunroe. All rights reserved. May be freely copied or excerpted for educational purposes with credit to the author.
 // created by VM 06/02/23
@@ -17,24 +17,14 @@
 //https://stackoverflow.com/questions/19625646/javascript-adding-an-id-attribute-to-another-created-element
  
 
-/*
-Todo:
-mid:
-table not shrinking
-make prettier
-input alignment off
 
-low:
-fix validation
-*/
 
-var minYInput =document.querySelector("#minY");
-var maxXInput =document.querySelector("#maxX");
-var maxYInput = maxY = document.querySelector("#maxY");
+// var minYInput =document.querySelector("#minY");
+// var maxXInput =document.querySelector("#maxX");
+// var maxYInput = maxY = document.querySelector("#maxY");
 const table = document.getElementById("mlttable");
-var error=false;
+$error=false;
 var errmsg="";
-const msg = document.querySelector('#errMsg');
 // const btn = document.querySelector('.btn')
 var x = false;
 const tableRange= [null, null, null,null];  //min x, min y, max x, max y
@@ -46,31 +36,31 @@ $('.btn').prop('disabled', true);
 function validate($button) {
     const regEx = /^-?[0-9]+$/;
     if (!regEx.test($button.val())) {
-        error = true;
+        $error = true;
         errmsg ="Please check input " +$button.attr("name") + " number must be a whole number";
     }
     else if (($button.val() < -50) || ($button.val() > 50)) {
-        error = true;
+        $error = true;
         errmsg = $button.attr("name") + " must be between -50 and 50";
     }
     else {
-        error = false;
+        $error = false;
         errmsg = "";
     }
     if ((tableRange[0] != null && tableRange[2] != null) && (tableRange[0] > tableRange[2])) {
-        error = true;
+        $error = true;
         errmsg ="Minimum row number must be smaller than maximum row number"
     }
     if ((tableRange[1] != null && tableRange[3] != null) && (tableRange[1] > tableRange[3])) {
-        error = true;
+        $error = true;
         errmsg ="Minimum column number must be smaller than maximum row number"
     }
-    if (!error) {
+    if (!$error) {
         $('#minX').prop('disabled', false);
         $('#minY').prop('disabled', false);
         $('#maxX').prop('disabled', false);
         $('#maxY').prop('disabled', false);
-        if (!error && tableRange[0] != null && tableRange[1] != null && tableRange[2] != null && tableRange[3] != null) { $('.btn').prop('disabled', false); }
+        if (!$error && tableRange[0] != null && tableRange[1] != null && tableRange[2] != null && tableRange[3] != null) { $('.btn').prop('disabled', false); }
         else { $('.btn').prop('disabled', true);}   9
     }
     else {
@@ -84,7 +74,7 @@ function validate($button) {
     
     // msg.classList.add('error');
    $("#errMsg").text(errmsg);
-    return error;
+    return $error;
 }
 
 // Input Listeners
@@ -92,25 +82,26 @@ function validate($button) {
 $("#minX").change(function(){
     // console.log("JQ value"+ $("#minX" )
     tableRange[0] = Number($("#minX").val());
-    validate($("#minX"), tableRange[0]);
+    validate($("#minX"));
   });
   $("#minY").change(function(){
-    tableRange[1] = Number(minYInput.value);
-    validate(minYInput,"Minimum column number ",tableRange[1]);
+    tableRange[1] = Number($("#minY").val());
+    validate($("#minY"));
 });
 $("#maxX").change(function(){
-    tableRange[2] = Number(maxXInput.value);
-    validate(maxXInput,"Maximum row number",tableRange[2]);
+    tableRange[2] = Number($("#maxX").val());
+    validate($("#maxX"));
 });
 $("#maxY").change(function(){
-    tableRange[3] = Number(maxYInput.value);
-    validate(maxYInput,"Maximum column number",tableRange[3]);
+    tableRange[3] = Number($("#maxY").val());
+    validate($("#maxY"));
     
 });
   
 $('.btn').click(function(){
     // e.preventDefault();
     makeTable();
+
    
 });
 
