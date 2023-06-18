@@ -20,7 +20,6 @@ https://stackoverflow.com/questions/27392899/rows-disappearing-when-adding-them-
 https://stackoverflow.com/questions/38447344/create-jquery-validate-rule-for-positive-whole-numbers
 */
 
-// FIXME add ready!!!!
  
 
 const table = document.getElementById("mlttable");
@@ -29,132 +28,161 @@ $ready=false;
 var errmsg="";
 const tableRange= [null, null, null,null];  //min x, min y, max x, max y
 
+// Digit broken code:
+// digit: true,
+// digit: jQuery.validator.format("Please select whole Column number (ex. -1,0,1,2)")  
 $(function() {
-    $("form").validate({
-        rules:{
-            minX:{
-                required: true,
-                min: -50,
-                max: 50,
-                integer: true,
+    
+    function validate(){
+        $ready=false;
+       var validator =  $("form").validate({
+            rules:{
+                minX:{
+                    required: true,
+                    min: -50,
+                    max: 50,
+                },
+                minY:{
+                    required: true,
+                    min: -50,
+                    max: 50,
+                    
+                },
+                maxX:{
+                    required: true,
+                    min: -50,
+                    max: 50,
+
+                },
+                maxY:{
+                    required: true,
+                    min: -50,
+                    max: 50,
+                },
+            },
+            mesages:{
+                minX:{
+                    required: jQuery.validator.format("Minimum Column Required"),
+                    min: jQuery.validator.format("Please select Column number greater than -51"),
+                    max: jQuery.validator.format("Please select Column number less than 51"),
+                   
+                    
+                },
+                minY:{
+                    required: jQuery.validator.format("Minimum Row Required"),
+                    min: jQuery.validator.format("Please select Row number greater than -51"),
+                    max: jQuery.validator.format("Please select Row number less than 51"),
+
+                },
+                maxX:{
+                    required: jQuery.validator.format("Maximum Column Required"),
+                    min: jQuery.validator.format("Please select Column number greater than -51"),
+                    max: jQuery.validator.format("Please select Column number less than 51"),
+                   
+                },
+                maxY:{
+                    required: jQuery.validator.format("Maximum Row Required"),
+                    min: jQuery.validator.format("Please select Row number greater than -51"),
+                    max: jQuery.validator.format("Please select Row number less than 51"),
+                   
+                },
+
+
+            },
+            showErrors: function(errorMap, errorList) {
+                $("#summary").html("Your form contains "
+                  + this.numberOfInvalids()
+                  + " errors, see details below.");
+                this.defaultShowErrors();
+              },
+            success: function() {
+                if (tableRange[0] != null && tableRange[1] != null && tableRange[2] != null && tableRange[3] != null) {
+                    $ready=true;
+                    console.log($ready);
+                }
+            },
+
+            invalidHandler: function() {
+                console.log("invalid");
+              }
             
-            },
-            minY:{
-                required: true,
-                min: -50,
-                max: 50,
-                integer: true,
-            },
-            maxX:{
-                required: true,
-                min: -50,
-                max: 50,
-                integer: true,
-            },
-            maxY:{
-                required: true,
-                min: -50,
-                max: 50,
-                integer: true,
-            },
-        },
-        mesages:{
-            minX:{
-                required: jQuery.validator.format("Required Field"),
-                min: jQuery.validator.format("Please select  number greater than -51"),
-                max: jQuery.validator.format("Please select  number less than 51"),
-                integer: jQuery.validator.format("Please select whole number (ex. -1,0,1,2)")  
-                
-            },
-            minY:{
-                required: jQuery.validator.format("Required Field"),
-                min: jQuery.validator.format("Please select  number greater than -51"),
-                max: jQuery.validator.format("Please select  number less than 51"),
-                integer: jQuery.validator.format("Please select whole number (ex. -1,0,1,2)")  
-            },
-            maxX:{
-                required: jQuery.validator.format("Required Field"),
-                min: jQuery.validator.format("Please select  number greater than -51"),
-                max: jQuery.validator.format("Please select  number less than 51"),
-                integer: jQuery.validator.format("Please select whole number (ex. -1,0,1,2)")  
-            },
-            maxY:{
-                required: jQuery.validator.format("Required Field"),
-                min: jQuery.validator.format("Please select  number greater than -51"),
-                max: jQuery.validator.format("Please select  number less than 51"),
-                integer: jQuery.validator.format("Please select whole number (ex. -1,0,1,2)")  
-            },
-
-
-        }
-    })
-
-    function validate($button) {
-        const regEx = /^-?[0-9]+$/;
-        if (!regEx.test($button.val())) {
-            $error = true;
-            errmsg ="Please check input " +$button.attr("name") + " number must be a whole number";
-        }
-        else if (($button.val() < -50) || ($button.val() > 50)) {
-            $error = true;
-            errmsg = $button.attr("name") + " must be between -50 and 50";
-        }
-        else {
-            $error = false;
-            errmsg = "";
-        }
-        if ((tableRange[0] != null && tableRange[2] != null) && (tableRange[0] > tableRange[2])) {
-            $error = true;
-            errmsg ="Minimum row number must be smaller than maximum row number"
-        }
-        if ((tableRange[1] != null && tableRange[3] != null) && (tableRange[1] > tableRange[3])) {
-            $error = true;
-            errmsg ="Minimum column number must be smaller than maximum row number"
-        }
-        if (!$error) {
-            $('#minX').prop('disabled', false);
-            $('#minY').prop('disabled', false);
-            $('#maxX').prop('disabled', false);
-            $('#maxY').prop('disabled', false);
-            if (tableRange[0] != null && tableRange[1] != null && tableRange[2] != null && tableRange[3] != null) { $ready=true; }
-        }
-        else {
-            $('#minX').prop('disabled', true);
-            $('#minY').prop('disabled', true);
-            $('#maxX').prop('disabled', true);
-            $('#maxY').prop('disabled', true);
-            $button.prop('disabled', false);
-        }
-        
-        // msg.classList.add('error');
-    $("#errMsg").text(errmsg);
+        })
+        // console.log($minX.val())
+        // $numErrs=validator.numberOfInvalids();
+        validator.resetForm();
         return $ready;
-    }
+        // return ($numErrs==0);
+}
+    // function validate($button) {
+    //     const regEx = /^-?[0-9]+$/;
+    //     if (!regEx.test($button.val())) {
+    //         $error = true;
+    //         errmsg ="Please check input " +$button.attr("name") + " number must be a whole number";
+    //     }
+    //     else if (($button.val() < -50) || ($button.val() > 50)) {
+    //         $error = true;
+    //         errmsg = $button.attr("name") + " must be between -50 and 50";
+    //     }
+    //     else {
+    //         $error = false;
+    //         errmsg = "";
+    //     }
+    //     if ((tableRange[0] != null && tableRange[2] != null) && (tableRange[0] > tableRange[2])) {
+    //         $error = true;
+    //         errmsg ="Minimum row number must be smaller than maximum row number"
+    //     }
+    //     if ((tableRange[1] != null && tableRange[3] != null) && (tableRange[1] > tableRange[3])) {
+    //         $error = true;
+    //         errmsg ="Minimum column number must be smaller than maximum row number"
+    //     }
+    //     if (!$error) {
+    //         $('#minX').prop('disabled', false);
+    //         $('#minY').prop('disabled', false);
+    //         $('#maxX').prop('disabled', false);
+    //         $('#maxY').prop('disabled', false);
+    //         if (tableRange[0] != null && tableRange[1] != null && tableRange[2] != null && tableRange[3] != null) { $ready=true; }
+    //     }
+    //     else {
+    //         $('#minX').prop('disabled', true);
+    //         $('#minY').prop('disabled', true);
+    //         $('#maxX').prop('disabled', true);
+    //         $('#maxY').prop('disabled', true);
+    //         $button.prop('disabled', false);
+    //     }
+        
+    //     // msg.classList.add('error');
+    // $("#errMsg").text(errmsg);
+    //     return $ready;
+    // }
 
     // Input Listeners
 
-    // $("#minX").change(function(e){
-    //     e.preventDefault();
-    //     tableRange[0] = Number($("#minX").val());
-    //     if(validate($("#minX")))
-    //         makeTable();
-    // });
-    // $("#minY").change(function(e){
-    //     e.preventDefault();
-    //     tableRange[1] = Number($("#minY").val());
-    //     if (validate($("#minY"))) makeTable();
-    // });
-    // $("#maxX").change(function(e){
-    //     e.preventDefault();
-    //     tableRange[2] = Number($("#maxX").val());
-    //     if(validate($("#maxX")))makeTable();
-    // });
-    // $("#maxY").change(function(e){
-    //     e.preventDefault();
-    //     tableRange[3] = Number($("#maxY").val());
-    //     if (validate($("#maxY")))makeTable();
+    $("#minX").change(function(e){
+        e.preventDefault();
+        console.log()
+        tableRange[0] = Number($("#minX").val());
+        validate();
+        // alert( "Valid: " +  $("form").valid() );
+       if ($("form").valid()){
+            makeTable();
+       }
+    });
+    $("#minY").change(function(e){
+        e.preventDefault();
+        tableRange[1] = Number($("#minY").val());
+        // if (validate($("#minY"))) makeTable();
+    });
+    $("#maxX").change(function(e){
+        e.preventDefault();
+        tableRange[2] = Number($("#maxX").val());
+        // if(validate($("#maxX")))makeTable();
+    });
+    $("#maxY").change(function(e){
+        e.preventDefault();
+        tableRange[3] = Number($("#maxY").val());
+        // if (validate($("#maxY")))makeTable();
         
-    // });
+    });
     
 
     //create dynamic table
