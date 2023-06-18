@@ -23,9 +23,6 @@ https://stackoverflow.com/questions/38447344/create-jquery-validate-rule-for-pos
  
 
 const table = document.getElementById("mlttable");
-$error=false;
-$ready=false;
-var errmsg="";
 const tableRange= [null, null, null,null];  //min x, min y, max x, max y
 
 // Digit broken code:
@@ -34,7 +31,6 @@ const tableRange= [null, null, null,null];  //min x, min y, max x, max y
 $(function() {
     
     function validate(){
-        $ready=false;
        var validator =  $("form").validate({
             rules:{
                 minX:{
@@ -95,95 +91,51 @@ $(function() {
                   + " errors, see details below.");
                 this.defaultShowErrors();
               },
-            success: function() {
-                if (tableRange[0] != null && tableRange[1] != null && tableRange[2] != null && tableRange[3] != null) {
-                    $ready=true;
-                    console.log($ready);
-                }
-            },
-
-            invalidHandler: function() {
-                console.log("invalid");
-              }
+          
             
         })
         // console.log($minX.val())
         // $numErrs=validator.numberOfInvalids();
         validator.resetForm();
-        return $ready;
         // return ($numErrs==0);
 }
-    // function validate($button) {
-    //     const regEx = /^-?[0-9]+$/;
-    //     if (!regEx.test($button.val())) {
-    //         $error = true;
-    //         errmsg ="Please check input " +$button.attr("name") + " number must be a whole number";
-    //     }
-    //     else if (($button.val() < -50) || ($button.val() > 50)) {
-    //         $error = true;
-    //         errmsg = $button.attr("name") + " must be between -50 and 50";
-    //     }
-    //     else {
-    //         $error = false;
-    //         errmsg = "";
-    //     }
-    //     if ((tableRange[0] != null && tableRange[2] != null) && (tableRange[0] > tableRange[2])) {
-    //         $error = true;
-    //         errmsg ="Minimum row number must be smaller than maximum row number"
-    //     }
-    //     if ((tableRange[1] != null && tableRange[3] != null) && (tableRange[1] > tableRange[3])) {
-    //         $error = true;
-    //         errmsg ="Minimum column number must be smaller than maximum row number"
-    //     }
-    //     if (!$error) {
-    //         $('#minX').prop('disabled', false);
-    //         $('#minY').prop('disabled', false);
-    //         $('#maxX').prop('disabled', false);
-    //         $('#maxY').prop('disabled', false);
-    //         if (tableRange[0] != null && tableRange[1] != null && tableRange[2] != null && tableRange[3] != null) { $ready=true; }
-    //     }
-    //     else {
-    //         $('#minX').prop('disabled', true);
-    //         $('#minY').prop('disabled', true);
-    //         $('#maxX').prop('disabled', true);
-    //         $('#maxY').prop('disabled', true);
-    //         $button.prop('disabled', false);
-    //     }
-        
-    //     // msg.classList.add('error');
-    // $("#errMsg").text(errmsg);
-    //     return $ready;
-    // }
-
-    // Input Listeners
-
+    
     $("#minX").change(function(e){
         e.preventDefault();
         console.log()
         tableRange[0] = Number($("#minX").val());
         validate();
-        // alert( "Valid: " +  $("form").valid() );
-       if ($("form").valid()){
-            makeTable();
-       }
+        readyTable();
     });
     $("#minY").change(function(e){
         e.preventDefault();
         tableRange[1] = Number($("#minY").val());
-        // if (validate($("#minY"))) makeTable();
+        validate();
+        readyTable();
     });
     $("#maxX").change(function(e){
         e.preventDefault();
         tableRange[2] = Number($("#maxX").val());
-        // if(validate($("#maxX")))makeTable();
+        validate();
+        readyTable();
+        
     });
     $("#maxY").change(function(e){
         e.preventDefault();
         tableRange[3] = Number($("#maxY").val());
-        // if (validate($("#maxY")))makeTable();
+        validate();
+        readyTable();
         
     });
     
+    //check if program is ready to create new table
+    function readyTable(){
+        if ((tableRange[0] != null&&tableRange[1] != null &&tableRange[3] != null && tableRange[2] != null))
+            if ($("form").valid()){
+                console.log("ready")
+                makeTable();
+       }
+    }
 
     //create dynamic table
     function makeTable() {
