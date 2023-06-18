@@ -34,7 +34,7 @@ var maxYInput = maxY = document.querySelector("#maxY");
 const table = document.getElementById("mlttable");
 var error=false;
 var errmsg="";
-const msg = document.querySelector('.msg');
+const msg = document.querySelector('#errMsg');
 // const btn = document.querySelector('.btn')
 var x = false;
 const tableRange= [null, null, null,null];  //min x, min y, max x, max y
@@ -43,14 +43,13 @@ const tableRange= [null, null, null,null];  //min x, min y, max x, max y
 $('.btn').prop('disabled', true);
 
 
-function validate($button, $num) {
+function validate($button) {
     const regEx = /^-?[0-9]+$/;
     if (!regEx.test($button.val())) {
         error = true;
-        console.log("true")
         errmsg ="Please check input " +$button.attr("name") + " number must be a whole number";
     }
-    else if (($button.val() < -50) || ($num > 50)) {
+    else if (($button.val() < -50) || ($button.val() > 50)) {
         error = true;
         errmsg = $button.attr("name") + " must be between -50 and 50";
     }
@@ -76,15 +75,15 @@ function validate($button, $num) {
     }
     else {
         $('#minX').prop('disabled', true);
-        minYInput.disabled = true;
-        maxXInput.disabled=true
-        maxYInput.disabled = true;
+        $('#minY').prop('disabled', true);
+        $('#maxX').prop('disabled', true);
+        $('#maxY').prop('disabled', true);
         $('.btn').prop('disabled', true);
         $button.prop('disabled', false);
     }
     
-    msg.classList.add('error');
-    msg.innerHTML = errmsg;
+    // msg.classList.add('error');
+   $("#errMsg").text(errmsg);
     return error;
 }
 

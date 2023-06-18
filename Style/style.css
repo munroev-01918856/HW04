@@ -83,7 +83,7 @@ tr:nth-child(odd) {
 }
 
 
-.msg{
+#errMsg{
     color: red;
     font-style: italic;
     clear: both;
