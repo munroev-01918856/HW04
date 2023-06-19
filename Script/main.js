@@ -18,6 +18,7 @@ Traversy https://www.youtube.com/watch?v=hdI2bqOjy3c&t=4419s
 https://stackoverflow.com/questions/19625646/javascript-adding-an-id-attribute-to-another-created-element
 https://stackoverflow.com/questions/27392899/rows-disappearing-when-adding-them-dynamically-to-table-with-js-jquery
 https://stackoverflow.com/questions/38447344/create-jquery-validate-rule-for-positive-whole-numbers
+https://stackoverflow.com/questions/19483469/updating-jquery-ui-slider-from-text-box-value-on-change
 */
 
  
@@ -98,6 +99,7 @@ $(function() {
  }
 
    //create sliders
+   //Source:https://www.youtube.com/watch?v=reNLCuaxFF8
 
     $("#minXSlider").slider({
         min:-50,
@@ -147,7 +149,7 @@ $(function() {
             $("#maxY").val(ui.value);
             },
         stop: function (event, ui) {
-            tableRange[3]  =ui.value;
+            tableRange[3]=ui.value;
             validate();
             readyTable();
             }
@@ -158,18 +160,21 @@ $(function() {
     $("#minX").change(function(e){
         e.preventDefault();
         tableRange[0] = Number($("#minX").val());
+        $("#minXSlider").slider("value", $("#minX").val());
         validate();
         readyTable();
     });
     $("#minY").change(function(e){
         e.preventDefault();
         tableRange[1] = Number($("#minY").val());
+        $("#minYSlider").slider("value", $("#minY").val());
         validate();
         readyTable();
     });
     $("#maxX").change(function(e){
         e.preventDefault();
         tableRange[2] = Number($("#maxX").val());
+        $("#maxXSlider").slider("value", $("#maxX").val());
         validate();
         readyTable();
         
@@ -177,6 +182,7 @@ $(function() {
     $("#maxY").change(function(e){
         e.preventDefault();
         tableRange[3] = Number($("#maxY").val());
+        $("#maxYSlider").slider("value", $("#maxY").val());
         validate();
         readyTable();
         
@@ -197,7 +203,6 @@ $(function() {
                     tableRange[1]=tableRange[3];
                     tableRange[3]=tempx;  
                 }
-
                 makeTable();
        }
     }
