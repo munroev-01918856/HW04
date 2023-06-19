@@ -22,6 +22,15 @@ div {
     width: max-content;
     
 }
+#minXSlider {
+    width:300px; height:50px; border:solid; position:relative;
+    left:4px; top:4px;
+
+   }
+   #minXSlider .ui-slider-handle {
+    width:14px; height:30px; top:-4px;
+    
+   }
 /* Numbers Input */
 #numberInput{
     width:max-content;
@@ -43,13 +52,7 @@ div {
 .AAAAH{
     float:left;
 }
-/* Table */
-/* #mlttable{
-    overflow: auto;
-    white-space: nowrap;
 
-    max-width: 100px;
-}  */
 table {
     width: 100%;
 }
