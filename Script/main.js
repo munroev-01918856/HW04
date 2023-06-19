@@ -30,6 +30,22 @@ const tableRange= [null, null, null,null];  //min x, min y, max x, max y
 // digit: jQuery.validator.format("Please select whole Column number (ex. -1,0,1,2)")  
 $(function() {
     
+    var spanOut=$("#x");
+
+    $("#slider").slider({
+        
+    
+    min:-50,
+    max:50,
+    //    values: [0, 0],
+    slide: function (event, ui) {
+            spanOut.html(ui.value);
+            console.log(ui.value)
+            },
+    
+    });
+
+
     function validate(){
        var validator =  $("form").validate({
             rules:{
