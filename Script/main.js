@@ -24,9 +24,9 @@ https://stackoverflow.com/questions/19483469/updating-jquery-ui-slider-from-text
 
  
 
-
+var counter=0;
 const tableRange= [null, null, null,null];  //min x, min y, max x, max y
-
+var tabs = $( "#tabs" ).tabs();
 // Digit broken code:
 // digit: true,
 // digit: jQuery.validator.format("Please select whole Column number (ex. -1,0,1,2)")  
@@ -75,13 +75,13 @@ $(function() {
                  maxX:{
                      required: jQuery.validator.format("Maximum Column Required"),
                      min: jQuery.validator.format("Please select Column number greater than -51"),
-                     max: jQuery.validator.format("Please select Column number less than 51"),
+                     max: jQuery.validator.format("Please select Column number less than 51")
                     
                  },
                  maxY:{
                      required: jQuery.validator.format("Maximum Row Required"),
                      min: jQuery.validator.format("Please select Row number greater than -51"),
-                     max: jQuery.validator.format("Please select Row number less than 51"),
+                     max: jQuery.validator.format("Please select Row number less than 51")
                     
                  },
  
@@ -98,18 +98,49 @@ $(function() {
          })
          validator.resetForm();
  }
+
+    function removeTab(divID,tabID){
+      $("#tab2").remove();
+       $("#"+divID).remove();
+        $("#"+tabID).remove();
+    }
 //  <table id ="mlttable"></table>
 
 //  <li><a href="#mlttable">Tab 1</a></li>
     function makeNewTab(name){
-        var tabs = $( "#tabs" ).tabs();
-        var tableID="mlttable"+name+"table"
-        $("#tabs ul").append("<li><a href=\"#"+ name+"\">"+ name+ "</a></li>")
-        $("#tabs").append("<div id=\" #"+ name+ "\"><table id=\""+ tableID+ "\"></table>")
+      
+        var tableID=counter+"table";
+        var divID=counter+"div";
+        var tabID=counter+"tab"
+      
+        var buttonID=counter+"button"
+        counter++;
+        //add tab to UL 
+        $("#tabs ul").append("<li><a href=\"#"+ divID+"\" id=\""+ tabID+ 
+        "\" >"+ name+ "</a></li>")
+
+        //add elements in tab
+        $("#tabs #tables").append("<div id=\""+ divID+ 
+        "\">"+
+        "<button type=\"button\" id=\""+buttonID+"\">Delete Table</button>"+
+        "<table id=\""+ tableID+ "\"></table>")
         // $("#tabs").append("<table id=\""+ tableID+ "\"></table>")
         tabs.tabs( "refresh" );
+        $(document).on("click","#"+buttonID, function(){
+            removeTab(divID,tabID);
+          });
         return tableID;
     }
+
+    //create buttons
+    //https://stackoverflow.com/questions/7004059/jquery-remove-all-list-items-from-an-unordered-list
+    $("#clear").on( "click", function() {
+        
+        $('ul').empty()
+        $("#tables *").empty();
+
+      } );
+    
 
    //create sliders
    //Source:https://www.youtube.com/watch?v=reNLCuaxFF8
@@ -222,7 +253,7 @@ $(function() {
 
     //create dynamic table
     function makeTable() {
-        var tabName = "("+tableRange[0]+"-" +tableRange[2]+")*("+tableRange[1]+"-" +tableRange[3]+")"
+        var tabName = "["+tableRange[0]+"," +tableRange[2]+"]*["+tableRange[1]+"," +tableRange[3]+"]"
         var tableName=makeNewTab(tabName);
         const table = document.getElementById(tableName);
         console.log(tabName);
