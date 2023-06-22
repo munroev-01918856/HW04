@@ -103,10 +103,10 @@ $(function() {
 //  <li><a href="#mlttable">Tab 1</a></li>
     function makeNewTab(name){
         var tabs = $( "#tabs" ).tabs();
-        var tableID=name+" table"
-        $("#tabs ul").append("<li><a href=\" #"+ name+ " \">"+ name+ "</a></li>")
-        $("#tabs").append("<div id=\" #"+ name+ "\"><h2>table</h2></div>")
-        $("#tabs").append("<table id=\""+ tableID+ "\"></table>")
+        var tableID="mlttable"+name+"table"
+        $("#tabs ul").append("<li><a href=\"#"+ name+"\">"+ name+ "</a></li>")
+        $("#tabs").append("<div id=\" #"+ name+ "\"><table id=\""+ tableID+ "\"></table>")
+        // $("#tabs").append("<table id=\""+ tableID+ "\"></table>")
         tabs.tabs( "refresh" );
         return tableID;
     }
@@ -222,10 +222,11 @@ $(function() {
 
     //create dynamic table
     function makeTable() {
-        var tabName = "Table: ("+tableRange[0]+"-" +tableRange[2]+") * ("+tableRange[1]+"-" +tableRange[3]+")"
-        const table = document.getElementById("mlttable");
+        var tabName = "("+tableRange[0]+"-" +tableRange[2]+")*("+tableRange[1]+"-" +tableRange[3]+")"
+        var tableName=makeNewTab(tabName);
+        const table = document.getElementById(tableName);
         console.log(tabName);
-        makeNewTab(tabName);
+        // makeNewTab(tabName);
         table.innerHTML = ""; //clear old table
         console.log("Calculating Table");
         console.log("Min X: " + tableRange[0] + "Min Y: " + tableRange[1] + "Max X: " + tableRange[2] + "Max Y: " + tableRange[3]);
