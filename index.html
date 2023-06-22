@@ -22,11 +22,6 @@ Traversy https://www.youtube.com/watch?v=hdI2bqOjy3c&t=4419s
 <head>
 
     <title>Multiplication table </title>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
-    <script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
-    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
     
 
     <meta charset="utf-8">
@@ -45,41 +40,63 @@ Traversy https://www.youtube.com/watch?v=hdI2bqOjy3c&t=4419s
         https://www.jesseheines.com/~heines/91.461/91.461-2012-13f/461-lecs/code/jmh-table-v1.html?xBegin=5&xEnd=10&yBegin=1&yEnd=5 
              -->
         <div class="container">
+        
             <div class="AAAAH">
                 <h3>Add Number Range</h3>
-                
+               
                 <form id="numberInput">
                     <div>
                         <label for="minX">Minimum Row Number:</label>
-                        <input type="text" id="minX" class="numInputBox" name="minX">
-                        <div id="minXSlider"></div>
+                        <input type="text" id="minX" class="numInputBox" name="minX">   
                     </div>
+                    <div id="minXSlider"></div>
                     <div>
                         <label for="maxX">Maximum Row Number:</label>
                         <input type="text" id="maxX" class="numInputBox"  name="maxX">
-                        <div id="maxXSlider"></div>
                     </div>
+                    <div id="maxXSlider"></div>
                     <div>
                         <label for="minY">Minimum Column Number:</label>
                         <input type="text" id="minY" class="numInputBox "  name="minY">
-                        <div id="minYSlider"></div>
                     </div>
+                    <div id="minYSlider"></div>
                     <div>
                         <label for="maxY">Maximum Column Number:</label>
                         <input type="text" id="maxY" class="numInputBox"  name="maxY"> 
-                        <div id="maxYSlider"></div>
                     </div>
+                    <div id="maxYSlider"></div>
                 </form>
             </div>
             <div id="errMsg"></div>
             <div id="tblcont">
-                <table id ="mlttable">
-                </table>
+                <div id="tabs">
+                    <ul>
+                        <li><a href="#mlttable">Tab 1</a></li>
+                        <li><a href="#tab2">Tab 2</a></li>
+                    </ul>
+                    <table id ="mlttable">
+                    </table>
+                    <div id="tab2">
+                        <h2>tab 2</h2>
+                    </div>
+                </div>
             </div>
+        </div>
         </div>
 
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+    <script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+    <script src="development-bundle/ui/jquery.ui.tabs.js">
+    </script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
     <script src="Script/main.js"></script>
+    <script>
+        (function($){
+        $("#tabs").tabs();
+        })(jQuery);
+        </script>
 </body>
 
 </html>

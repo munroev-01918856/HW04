@@ -11,6 +11,7 @@ Sources:
 w3Schools w3schools.com
 tutorialrepublic.com/faq/how-to-get-the-value-in-an-input-text-box-using-jquery.php#:~:text=Answer%3A%20Use%20the%20jQuery%20val,in%20an%20alert%20dialog%20box.
 TutorialsPoint 
+https://api.jqueryui.com/slider/
 geeksForgeeks.com
 https://jquery.com/
 sitepoint.com/basic-jquery-form-validation-tutorial/
@@ -30,7 +31,7 @@ const tableRange= [null, null, null,null];  //min x, min y, max x, max y
 // digit: true,
 // digit: jQuery.validator.format("Please select whole Column number (ex. -1,0,1,2)")  
 $(function() {
-    
+     makeNewTab("tab3");
     function validate(){
         var validator =  $("form").validate({
              rules:{
@@ -98,6 +99,18 @@ $(function() {
          validator.resetForm();
  }
 
+//  <li><a href="#mlttable">Tab 1</a></li>
+    function makeNewTab(name){
+        var tabs = $( "#tabs" ).tabs();
+        $("#tabs ul").append("<li><a href=\"#tab3\">Tab 1</a></li>")
+        $("#tabs").append("<div id=\"tab3\"><h2>tab 3</h2></div>")
+         tabs.tabs( "refresh" );
+        // $("#tabs ul").append("<li><a href='#"+name+"'>"+name+"</a><li>");
+        
+        // $("#tabs").append("<div id="+name+"> <h2>Test</h2></div>");
+        // console.log("<li><a href='#"+name+"'>"+name+"</a><li>");
+    }
+
    //create sliders
    //Source:https://www.youtube.com/watch?v=reNLCuaxFF8
 
@@ -111,10 +124,10 @@ $(function() {
             tableRange[0] = Number($("#minX").val());
             validate();
             readyTable();
-            //FIXME validate!
             }
     
     });
+
     $("#minYSlider").slider({
         min:-50,
         max:50,
