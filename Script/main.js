@@ -24,14 +24,14 @@ https://stackoverflow.com/questions/19483469/updating-jquery-ui-slider-from-text
 
  
 
-const table = document.getElementById("mlttable");
+
 const tableRange= [null, null, null,null];  //min x, min y, max x, max y
 
 // Digit broken code:
 // digit: true,
 // digit: jQuery.validator.format("Please select whole Column number (ex. -1,0,1,2)")  
 $(function() {
-     makeNewTab("tab3");
+     
     function validate(){
         var validator =  $("form").validate({
              rules:{
@@ -98,17 +98,17 @@ $(function() {
          })
          validator.resetForm();
  }
+//  <table id ="mlttable"></table>
 
 //  <li><a href="#mlttable">Tab 1</a></li>
     function makeNewTab(name){
         var tabs = $( "#tabs" ).tabs();
-        $("#tabs ul").append("<li><a href=\"#tab3\">Tab 1</a></li>")
-        $("#tabs").append("<div id=\"tab3\"><h2>tab 3</h2></div>")
-         tabs.tabs( "refresh" );
-        // $("#tabs ul").append("<li><a href='#"+name+"'>"+name+"</a><li>");
-        
-        // $("#tabs").append("<div id="+name+"> <h2>Test</h2></div>");
-        // console.log("<li><a href='#"+name+"'>"+name+"</a><li>");
+        var tableID=name+" table"
+        $("#tabs ul").append("<li><a href=\" #"+ name+ " \">"+ name+ "</a></li>")
+        $("#tabs").append("<div id=\" #"+ name+ "\"><h2>table</h2></div>")
+        $("#tabs").append("<table id=\""+ tableID+ "\"></table>")
+        tabs.tabs( "refresh" );
+        return tableID;
     }
 
    //create sliders
@@ -222,6 +222,10 @@ $(function() {
 
     //create dynamic table
     function makeTable() {
+        var tabName = "Table: ("+tableRange[0]+"-" +tableRange[2]+") * ("+tableRange[1]+"-" +tableRange[3]+")"
+        const table = document.getElementById("mlttable");
+        console.log(tabName);
+        makeNewTab(tabName);
         table.innerHTML = ""; //clear old table
         console.log("Calculating Table");
         console.log("Min X: " + tableRange[0] + "Min Y: " + tableRange[1] + "Max X: " + tableRange[2] + "Max Y: " + tableRange[3]);
