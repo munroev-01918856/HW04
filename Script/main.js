@@ -104,12 +104,10 @@ $(function() {
        $("#"+divID).remove();
         $("#"+tabID).remove();
     }
-//  <table id ="mlttable"></table>
 
-//  <li><a href="#mlttable">Tab 1</a></li>
     function makeNewTab(name){
       
-        var tableID=counter+"table";
+        var tableID=name+"table";
         var divID=counter+"div";
         var tabID=counter+"tab"
       
