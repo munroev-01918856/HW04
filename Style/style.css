@@ -1,3 +1,24 @@
+/*File: style.css
+GUI Assignment: HW 3-Create multiplication table
+Victoria Munroe victoria_munroe@student.uml.edu
+Description: Website to take input & return multiplication table
+This page holds the css
+
+Copyright (c) 2023 by VMunroe. All rights reserved. May be freely copied or excerpted for educational purposes with credit to the author.
+created by VM 06/15/23
+
+Sources: 
+w3Schools w3schools.com
+tutorialrepublic.com/faq/how-to-get-the-value-in-an-input-text-box-using-jquery.php#:~:text=Answer%3A%20Use%20the%20jQuery%20val,in%20an%20alert%20dialog%20box.
+TutorialsPoint 
+geeksForgeeks.com
+https://jquery.com/
+sitepoint.com/basic-jquery-form-validation-tutorial/
+Traversy https://www.youtube.com/watch?v=hdI2bqOjy3c&t=4419s
+https://stackoverflow.com/questions/19625646/javascript-adding-an-id-attribute-to-another-created-element
+https://stackoverflow.com/questions/27392899/rows-disappearing-when-adding-them-dynamically-to-table-with-js-jquery
+https://stackoverflow.com/questions/38447344/create-jquery-validate-rule-for-positive-whole-numbers
+*/
 
 /* General Formatting */
 body{
@@ -83,8 +104,7 @@ tr:nth-child(odd) {
 }
 
 
-#errMsg{
-    color: red;
+#info{
     font-style: italic;
     clear: both;
 }
