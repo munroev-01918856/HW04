@@ -58,7 +58,7 @@ $(function() {
                      max: 50,
                  },
              },
-             mesages:{
+             messages:{
                  minX:{
                      required: jQuery.validator.format("Minimum Column Required"),
                      min: jQuery.validator.format("Please select Column number greater than -51"),
@@ -99,14 +99,17 @@ $(function() {
          validator.resetForm();
  }
 
+    //removes selected tab & opens up first tab
     function removeTab(divID,tabID){
       $("#tab2").remove();
        $("#"+divID).remove();
         $("#"+tabID).remove();
+        $( "#tabs" ).tabs({ active: 0 });
     }
 
     function makeNewTab(name){
-      
+        
+
         var tableID=name+"table";
         var divID=counter+"div";
         var tabID=counter+"tab"
@@ -246,6 +249,9 @@ $(function() {
                     tableRange[3]=tempx;  
                 }
                 makeTable();
+                var $index =$('ul li').length;
+                // alert($index);
+                $( "#tabs" ).tabs({ active:$index });
        }
     }
 
@@ -257,8 +263,7 @@ $(function() {
         console.log(tabName);
         // makeNewTab(tabName);
         table.innerHTML = ""; //clear old table
-        console.log("Calculating Table");
-        console.log("Min X: " + tableRange[0] + "Min Y: " + tableRange[1] + "Max X: " + tableRange[2] + "Max Y: " + tableRange[3]);
+    
         var y = tableRange[1];
         var rowIndex = 1;
         var colIndex = 0;
@@ -281,26 +286,26 @@ $(function() {
 
         //Calculate table contents
         while (y <= tableRange[3]) {
-        //colIndex = 0;
-            console.log("New Row: " +y);
+            //colIndex = 0;
+            
             row = table.insertRow(rowIndex);
         
-        //create left column header
-        var headerColumnCell = row.insertCell(0);
-        headerColumnCell.innerHTML = y;
-        headerColumnCell.setAttribute("class", "headers");
-        
-        //create rest of the row
-        colIndex = 1; //0th column was header
-            for (let x = tableRange[0]; x <= tableRange[2]; x++){
-                cell = row.insertCell(colIndex);
-                cell.innerHTML = y * x;
-                // console.log("Row " + x+ " Column " + y);
-                // console.log("Resut" + (x * y));
-                colIndex++;
-            }
-            y++;
-            rowIndex++;
+            //create left column header
+            var headerColumnCell = row.insertCell(0);
+            headerColumnCell.innerHTML = y;
+            headerColumnCell.setAttribute("class", "headers");
+            
+            //create rest of the row
+            colIndex = 1; //0th column was header
+                for (let x = tableRange[0]; x <= tableRange[2]; x++){
+                    cell = row.insertCell(colIndex);
+                    cell.innerHTML = y * x;
+                    // console.log("Row " + x+ " Column " + y);
+                    // console.log("Resut" + (x * y));
+                    colIndex++;
+                }
+                y++;
+                rowIndex++;
         }
 
         // row = table.insertRow(0);
