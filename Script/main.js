@@ -140,7 +140,7 @@ $(function() {
                 tableRange[2]=tempx;  
             }
             if (tableRange[1]>tableRange[3]){
-                $("#info").append("Minimum row is larger than the max so program has switched them")
+                $("#info").append(" Minimum row is larger than the max so program has switched them")
                 var tempx=tableRange[1];
                 tableRange[1]=tableRange[3];
                 tableRange[3]=tempx;  
