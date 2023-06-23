@@ -199,10 +199,6 @@ $(function() {
             rowIndex++;
         }
 
-        // row = table.insertRow(0);
-        // cell = row.insertCell(0);
-        // var cell2 = row.insertCell(1);
-        // cell.innerHTML = "Hi";
-        // cell2.innerHTML = "world";
+       
     }
 });
