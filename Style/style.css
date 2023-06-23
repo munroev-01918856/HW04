@@ -72,6 +72,7 @@ table {
 }
 
 #tblcont{
+    clear:both;
 	overflow: auto;
     width: 600px;
 	height: 300px;
@@ -100,8 +101,7 @@ tr:nth-child(odd) {
 }
 
 
-#errMsg{
-    color: red;
+#info{
     font-style: italic;
     clear: both;
 }
