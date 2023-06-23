@@ -56,7 +56,7 @@ $(function() {
                     max: 50,
                 },
             },
-            mesages:{
+            messages:{
                 minX:{
                     required: jQuery.validator.format("Minimum Column Required"),
                     min: jQuery.validator.format("Please select Column number greater than -51"),
