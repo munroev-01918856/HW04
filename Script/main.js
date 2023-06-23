@@ -131,10 +131,23 @@ $(function() {
     //check if program is ready to create new table
     function readyTable(){
         if ((tableRange[0] != null&&tableRange[1] != null &&tableRange[3] != null && tableRange[2] != null))
-            if ($("form").valid()){
-                console.log("ready")
+        if ($("form").valid()){
+            $("#info").text('');
+            if (tableRange[0]>tableRange[2]){
+                $("info").append("Minimum row is larger than the max so program has switched them")
+                var tempx=tableRange[0];
+                tableRange[0]=tableRange[2];
+                tableRange[2]=tempx;  
+            }
+            if (tableRange[1]>tableRange[3]){
+                $("info").append("Minimum row is larger than the max so program has switched them")
+                var tempx=tableRange[1];
+                tableRange[1]=tableRange[3];
+                tableRange[3]=tempx;  
+            }
                 makeTable();
        }
+    
     }
 
     //create dynamic table
